@@ -1,0 +1,99 @@
+<div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-slate-200 rounded-t">
+        <h3 class="text-lg font-semibold">
+          {{ title }}
+        </h3>
+      </div>
+      <form action="" [formGroup]="basicForm" (ngSubmit)="register(basicForm.value)" #ngForm="ngForm" id="empleadoform"
+        novalidate enctype="multipart/form-data">
+        <!--body-->
+        <div class="p-3">
+          <div class='grid grid-cols-1'>
+            <div class='form-group m-1'>
+              <label class='form-label'>Hora Inicio</label>
+              <input type="time" class='form-control' id='hora_inicio' formControlName="hora_inicio" placeholder="hora_inicio"
+                [ngClass]="{'is-invalid': basicForm.get('hora_inicio')!.touched && basicForm.get('hora_inicio')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Hora Inicio es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Hora Inicio Reseso</label>
+              <input type="time" class='form-control' id='hora_inicio_reseso' formControlName="hora_inicio_reseso" placeholder="hora_inicio_reseso"
+                [ngClass]="{'is-invalid': basicForm.get('hora_inicio_reseso')!.touched && basicForm.get('hora_inicio_reseso')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Hora Inicio Reseso es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Hora Fin Reseso</label>
+              <input type="time" class='form-control' id='hora_fin_reseso' formControlName="hora_fin_reseso" placeholder="hora_fin_reseso"
+                [ngClass]="{'is-invalid': basicForm.get('hora_fin_reseso')!.touched && basicForm.get('hora_fin_reseso')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Hora Fin Reseso es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Hora Fin</label>
+              <input type="time" class='form-control' id='hora_fin' formControlName="hora_fin" placeholder="hora_fin"
+                [ngClass]="{'is-invalid': basicForm.get('hora_fin')!.touched && basicForm.get('hora_fin')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Hora Fin es requerido</div>
+              </div>
+            </div>
+          </div>
+          <div class='form-group m-1'>
+            <label class='form-label'>Dias a Trabajar:</label>
+            <div class='grid grid-cols-7'>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Domingo</label>
+                <input type="checkbox" class='form-control' id='domingo' formControlName="domingo" placeholder="domingo"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Lunes</label>
+                <input type="checkbox" class='form-control' id='lunes' formControlName="lunes" placeholder="lunes"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Martes</label>
+                <input type="checkbox" class='form-control' id='martes' formControlName="martes" placeholder="martes"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Miercoles</label>
+                <input type="checkbox" class='form-control' id='miercoles' formControlName="miercoles" placeholder="miercoles"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Jueves</label>
+                <input type="checkbox" class='form-control' id='jueves' formControlName="jueves" placeholder="jueves"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Viernes</label>
+                <input type="checkbox" class='form-control' id='viernes' formControlName="viernes" placeholder="viernes"/>
+              </div>
+              <div class='form-group m-1 text-center'>
+                <label class='form-label'>Sabado</label>
+                <input type="checkbox" class='form-control' id='sabado' formControlName="sabado" placeholder="sabado"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
+          <button
+            class="text-red-500 background-transparent hover:bg-slate-200 font-bold uppercase p-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear rounded-sm"
+            type="button" (click)="activeModal.close('Close click')">
+            Cerrar
+          </button>
+          <button
+            class="bg-green-600 text-white hover:bg-green-700 font-bold uppercase text-sm p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear"
+            type="submit" [disabled]="basicForm.invalid || isLoading" (click)="hola()">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="opacity-25 fixed inset-0 z-40 bg-black"></div>

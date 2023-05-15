@@ -1,0 +1,91 @@
+<div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-3 border-b border-solid border-slate-200 rounded-t">
+        <h3 class="text-lg font-semibold">
+          {{ title }}
+        </h3>
+      </div>
+      <form action="" [formGroup]="basicForm" (ngSubmit)="register(basicForm.value)" #ngForm="ngForm" id="empleadoform"
+        novalidate enctype="multipart/form-data">
+        <!--body-->
+        <div class="p-6">
+          <div class='grid grid-cols-2'>
+            <div class='form-group m-1'>
+              <label class='form-label'>Nombres</label>
+              <input type="text" class='form-control' id='title' formControlName="nombres" placeholder="nombres"
+                [ngClass]="{'is-invalid': basicForm.get('nombres')!.touched && basicForm.get('nombres')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Nombres es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Apellidos</label>
+              <input type="text" class='form-control' id='apellidos' formControlName="apellidos" placeholder="apellidos"
+                [ngClass]="{'is-invalid': basicForm.get('apellidos')!.touched && basicForm.get('apellidos')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Apellidos es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>CI</label>
+              <input type="text" class='form-control' id='ci' formControlName="ci" placeholder="ci"
+                [ngClass]="{'is-invalid': basicForm.get('ci')!.touched && basicForm.get('ci')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>CI es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Celular</label>
+              <input type="text" class='form-control' id='celular' formControlName="celular" placeholder="celular"
+                [ngClass]="{'is-invalid': basicForm.get('celular')!.touched && basicForm.get('celular')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Celular es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Fecha Nac.</label>
+              <input type="date" class='form-control' id='fecha_nac' formControlName="fecha_nac" placeholder="fecha_nac"
+                [ngClass]="{'is-invalid': basicForm.get('fecha_nac')!.touched && basicForm.get('fecha_nac')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Fecha Nac. es requerido</div>
+              </div>
+            </div>
+            <div></div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Usuario</label>
+              <input type="text" class='form-control' id='user' formControlName="user" placeholder="user"
+                [ngClass]="{'is-invalid': basicForm.get('user')!.touched && basicForm.get('user')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Usuario es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Contraseña</label>
+              <input type="password" class='form-control' id='password' formControlName="password" placeholder="password"
+                [ngClass]="{'is-invalid': basicForm.get('password')!.touched && basicForm.get('password')!.invalid}" />
+              <div class="invalid-feedback">
+                <div>Contraseña es requerido</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
+          <button
+            class="text-red-500 background-transparent hover:bg-slate-200 font-bold uppercase p-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear rounded-sm"
+            type="button" (click)="activeModal.close('Close click')">
+            Cerrar
+          </button>
+          <button
+            class="bg-green-600 text-white hover:bg-green-700 font-bold uppercase text-sm p-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear"
+            type="submit" [disabled]="basicForm.invalid || isLoading">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="opacity-25 fixed inset-0 z-40 bg-black"></div>

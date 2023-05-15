@@ -1,0 +1,54 @@
+<div class='my-4 flex flex-row justify-between'>
+  <div>
+    <h2 class='text-lg font-bold text-dark-700 md:text-xl'>
+      Funcionarios
+    </h2>
+    <!-- <p class='hidden pb-2 font-light text-dark-500 md:block'>
+      En esta sección podra gestionar todos los hoteles.
+    </p> -->
+  </div>
+  <div class='flex items-center'>
+      <button type="button" class='bg-green-600 hover:bg-green-700 rounded-sm text-white py-1 px-2' (click)="create()">Crear Nuevo</button>
+  </div>
+</div>
+
+<div class='relative overflow-x-auto'>
+    <table class='w-full text-center text-sm'>
+      <thead>
+        <tr>
+          <th class='py-1 px-3'>#</th>
+          <th class='py-1 px-3'>Foto</th>
+          <th class='py-1 px-3'>Nombre Completo</th>
+          <th class='py-1 px-3'>C.I.</th>
+          <th class='py-1 px-3'>Celular</th>
+          <th class='py-1 px-3'>Fecha Nac.</th>
+          <th class='py-1 px-3'>Usuario</th>
+          <th class='py-1 px-3'>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let base of objects; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td></td>
+          <td>{{ base.nombres }} {{ base.apellidos }}</td>
+          <td>{{ base.ci }}</td>
+          <td>{{ base.celular }}</td>
+          <td>{{ base.fecha_nac }}</td>
+          <td>{{ base.user }}</td>
+          <!-- <td>
+            <app-switch [id]="libro.id" [estado]="libro.enabled" (clickEnable)="enable(libro.id)"></app-switch>
+          </td> -->
+          <td>
+            <div class="flex">
+              <button type="button" class="bg-yellow-600 hover:bg-yellow-700 rounded-sm text-white py-1 px-2" (click)="edit(base.id)">
+                Editar
+              </button>
+              <button type="button" class="bg-red-600 hover:bg-red-700 rounded-sm text-white py-1 px-2 ml-1" (click)="eliminar(base.id)">
+                Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
