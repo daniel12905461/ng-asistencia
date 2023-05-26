@@ -1,4 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.vertical_text {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+
+
+
+.map {
+  width: 100%;
+  height:300px;
+}
+
+#hotel_map {
+  height: 91vh;
+  width: 100%;
+}
+
+#map_ruta_config {
+  height: 75vh;
+  width: 100%;
+}
+
+.control {
+  width: 23px;
+  height: 23px;
+  border: 1px solid #00881d;
+  border-radius: 13px;
+  background-color: #00ff6e;
+  /* opacity: 0.5; */
+}
+#vienna {
+  text-decoration: none;
+  color: white;
+  font-size: 11pt;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+.popover-body {
+  min-width: 276px;
+}
+
+
+.ol-control {
+  visibility: hidden;
+}

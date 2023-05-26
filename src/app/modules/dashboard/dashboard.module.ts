@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -8,13 +8,13 @@ import { ListFuncionarioComponent } from './list-funcionario/list-funcionario.co
 import { CreateFuncionarioComponent } from './list-funcionario/create-funcionario/create-funcionario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ListRolesComponent } from './list-roles/list-roles.component';
 import { CreateRolesComponent } from './list-roles/create-roles/create-roles.component';
 import { ListHorariosComponent } from './list-horarios/list-horarios.component';
 import { CreateHorariosComponent } from './list-horarios/create-horarios/create-horarios.component';
 import { ListUbicacionesComponent } from './list-ubicaciones/list-ubicaciones.component';
 import { CreateUbicacionesComponent } from './list-ubicaciones/create-ubicaciones/create-ubicaciones.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -37,6 +37,9 @@ import { CreateUbicacionesComponent } from './list-ubicaciones/create-ubicacione
     ReactiveFormsModule,
     NgbModule,
     SharedModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class DashboardModule { }

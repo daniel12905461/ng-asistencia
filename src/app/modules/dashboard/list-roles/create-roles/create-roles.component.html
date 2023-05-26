@@ -21,6 +21,20 @@
                 <div>Nombre es requerido</div>
               </div>
             </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Horario</label>
+              <select
+                class='form-control' id='id_horarios' formControlName="id_horarios" placeholder="id_horarios"
+                [ngClass]="{'is-invalid': basicForm.get('id_horarios')!.touched && basicForm.get('id_horarios')!.invalid}"
+              >
+                <option *ngFor="let horario of horarios;" [value]="horario.id">
+                  {{horario.hora_inicio}} - {{horario.hora_inicio}}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                <div>HOrario es requerido</div>
+              </div>
+            </div>
 
           </div>
         </div>

@@ -36,6 +36,10 @@ const routes: Routes = [
         component: ListUbicacionesComponent,
         // canActivate: [AuthGuardService]
       },
+      {
+        path: 'reportes',
+        loadChildren: () => import('./reportes/reportes.module').then(m => m.ReportesModule)
+      },
     ]
   },
   {

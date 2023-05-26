@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs/operators';
 import { AlertSwallService } from 'src/app/core/alert-swall.service';
-import { FuncionarioService } from 'src/app/modules/services/funcionario.service';
+import { HorarioService } from 'src/app/modules/services/horario.service';
 import { RolesService } from 'src/app/modules/services/roles.service';
 
 @Component({
@@ -16,29 +16,40 @@ export class CreateRolesComponent implements OnInit {
   @Input() title: string = "";
   @Input() id: string = "";
   isLoading = false;
+  horarios: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     public baseService: RolesService,
+    public horarioService: HorarioService,
     public alertSwal: AlertSwallService
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.listHorarios();
 
     if (this.id !== "") {
       this.baseService.getById(this.id).subscribe( data => {
         this.basicForm.setValue({
           nombre: data.data.nombre,
+          id_horarios: data.data.id_horarios,
         });
       });
     }
   }
 
+  listHorarios(){
+    this.horarioService.getAll().subscribe(data => {
+      this.horarios = data.data;
+    })
+  }
+
   createForm() {
     this.basicForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
+      id_horarios: ['', [Validators.required]],
     });
   }
 

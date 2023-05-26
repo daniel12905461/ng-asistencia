@@ -1,0 +1,58 @@
+<div class='my-4 flex flex-row justify-between'>
+  <div>
+    <h2 class='text-lg font-bold text-dark-700 md:text-xl'>
+      Reporte de Funcionarios por Mes
+    </h2>
+    <p class='hidden pb-2 font-light text-dark-500 md:block'>
+      En esta sección podra ver los reportes de asistencia de los funcionarios.
+    </p>
+  </div>
+  <div class='flex items-center'>
+    <div class='form-group m-1'>
+      <label class='form-label mb-0'>Seleccione un Mes:</label>
+      <select
+        class='form-control form-control-sm'
+      >
+        <option *ngFor="let mes of gestion?.meses" [value]="mes.id">
+          {{mes.nombre}}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class='relative overflow-x-auto'>
+    <table class='w-full text-center text-sm border-collapse border border-slate-400'>
+      <thead>
+        <tr>
+          <th class='border border-slate-300' colspan="2">Enero - {{ gestion?.nombre }}</th>
+          <td *ngFor="let date of datesOfMonth" class="vertical_text text-left border border-slate-300 py-1" rowspan="2">
+            <!-- {{ date.date | date:'dd-MM-yyyy' }}  {{ date.dayName }} -->
+            <span>{{ date.date.toDate() | date:'dd-MM-yyyy' }}</span> - <span>{{ date.dayName }}</span>
+          </td>
+        </tr>
+        <tr>
+          <th class='border border-slate-300' style="height: 15px;">#</th>
+          <th class='border border-slate-300'>Funcionario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcionario of objects; let i = index">
+          <th scope="row" class="border border-slate-300">{{ i + 1 }}</th>
+          <td class="border border-slate-300">CI: {{ funcionario.ci }} - {{ funcionario.nombres }} {{ funcionario.apellidos }}</td>
+          <!-- <td *ngFor="let dia of funcionario.dias" class="border border-slate-300 bg">
+            {{ dia.estado }}
+          </td> -->
+          <td *ngFor="let dia of funcionario.dias" class="border border-slate-300" [ngClass]="{
+            'bg-green-300': dia.estado === 'Presente',
+            'bg-yellow-300': dia.estado === 'Tarde',
+            'bg-red-300': dia.estado === 'Falta'
+          }">
+            <ng-container *ngIf="dia.estado === 'Presente'">P</ng-container>
+            <ng-container *ngIf="dia.estado === 'Tarde'">T</ng-container>
+            <ng-container *ngIf="dia.estado === 'Falta'">F</ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

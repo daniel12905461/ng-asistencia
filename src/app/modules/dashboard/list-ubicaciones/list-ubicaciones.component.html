@@ -24,19 +24,17 @@
       <tbody>
         <tr *ngFor="let base of objects; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ base.nombres }}</td>
-          <td>{{ base.apellidos }}</td>
-          <td>{{ base.ci }}</td>
+          <td>{{ base.nombre }}</td>
           <!-- <td>
             <app-switch [id]="libro.id" [estado]="libro.enabled" (clickEnable)="enable(libro.id)"></app-switch>
           </td> -->
           <td>
-            <div class="btn-group">
-              <button type="button" class="btn" (click)="edit(base.id)">
-                <i class="fas fa-pencil-alt text-warning"></i>
+            <div class="flex items-center justify-center">
+              <button type="button" class="bg-yellow-600 hover:bg-yellow-700 rounded-sm text-white py-1 px-2" (click)="edit(base.id)">
+                Editar
               </button>
-              <button type="button" class="btn" (click)="eliminar(base.id)">
-                <i class="fas fa-trash-alt text-danger"></i>
+              <button type="button" class="bg-red-600 hover:bg-red-700 rounded-sm text-white py-1 px-2 ml-1" (click)="eliminar(base.id)">
+                Eliminar
               </button>
             </div>
           </td>

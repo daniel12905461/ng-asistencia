@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs/operators';
 import { AlertSwallService } from 'src/app/core/alert-swall.service';
 import { FuncionarioService } from 'src/app/modules/services/funcionario.service';
+import { RolesService } from 'src/app/modules/services/roles.service';
+import { UbicacionService } from 'src/app/modules/services/ubicacion.service';
 
 @Component({
   selector: 'app-create-funcionario',
@@ -15,16 +17,22 @@ export class CreateFuncionarioComponent implements OnInit {
   @Input() title: string = "";
   @Input() id: string = "";
   isLoading = false;
+  roles: any[] = [];
+  ubicaciones: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     public baseService: FuncionarioService,
+    public rolesService: RolesService,
+    public ubicacionService: UbicacionService,
     public alertSwal: AlertSwallService
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.listHorarios();
+    this.listUbicaciones();
 
     if (this.id !== "") {
       this.baseService.getById(this.id).subscribe( data => {
@@ -37,9 +45,25 @@ export class CreateFuncionarioComponent implements OnInit {
           fecha_nac: data.data.fecha_nac,
           user: data.data.user,
           password: data.data.password,
+          id_rols: data.data.id_rols,
+          id_ubicaciones: data.data.id_ubicaciones,
         });
       });
     }
+  }
+
+  listHorarios(){
+    this.rolesService.getAll().subscribe(data => {
+      this.roles = data.data;
+    })
+    console.log(this.roles);
+  }
+
+  listUbicaciones(){
+    this.ubicacionService.getAll().subscribe(data => {
+      this.ubicaciones = data.data;
+    })
+    console.log(this.ubicaciones);
   }
 
   createForm() {
@@ -52,6 +76,8 @@ export class CreateFuncionarioComponent implements OnInit {
       fecha_nac: ['', [Validators.required]],
       user: ['', [Validators.required]],
       password: [''],
+      id_rols: ['', [Validators.required]],
+      id_ubicaciones: ['', [Validators.required]],
     });
   }
 

@@ -21,7 +21,7 @@ export class ListUbicacionesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.list();
+    this.list();
   }
 
   list() {

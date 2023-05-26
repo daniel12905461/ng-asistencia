@@ -70,6 +70,34 @@
                 <div>Contraseña es requerido</div>
               </div>
             </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Rol</label>
+              <select
+                class='form-control' id='id_rols' formControlName="id_rols" placeholder="id_rols"
+                [ngClass]="{'is-invalid': basicForm.get('id_rols')!.touched && basicForm.get('id_rols')!.invalid}"
+              >
+                <option *ngFor="let rolAux of roles" [value]="rolAux.id">
+                  {{rolAux.nombre}}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                <div>Rol es requerido</div>
+              </div>
+            </div>
+            <div class='form-group m-1'>
+              <label class='form-label'>Ubicacion del Trabajo</label>
+              <select
+                class='form-control' id='id_ubicaciones' formControlName="id_ubicaciones" placeholder="id_ubicaciones"
+                [ngClass]="{'is-invalid': basicForm.get('id_ubicaciones')!.touched && basicForm.get('id_ubicaciones')!.invalid}"
+              >
+                <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
+                  {{ubicacion.nombre}}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                <div>Ubicacion es requerido</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
