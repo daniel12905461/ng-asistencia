@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GestionService } from '../../services/gestion.service';
 import { FuncionarioService } from '../../services/funcionario.service';
 import * as moment from 'moment';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { DetalleComponent } from './detalle/detalle.component';
 
 @Component({
   selector: 'app-reportes',
@@ -22,19 +24,23 @@ export class ReportesComponent implements OnInit {
     {"dia":"viernes", "d":"Fr"},
     {"dia":"sabado", "d":"Sa"},
   ];
+  year = 2023;
+  mesNombre = 'Enero';
+  modalOptions: NgbModalOptions = {};
+  showModal = false;
 
   constructor(
+    private modalService: NgbModal,
     private baseService: GestionService,
     private funcionarioService: FuncionarioService,
   ) { }
 
   ngOnInit(): void {
-    const year = 2023;
-    const month = 5;
-    this.datesOfMonth = this.getDatesOfMonth(year, month);
+    const month = 1;
+    this.datesOfMonth = this.getDatesOfMonth(this.year, month-1);
 
     this.list();
-    this.listFuncionarios();
+    this.listFuncionarios('1');
   }
 
   list() {
@@ -43,12 +49,12 @@ export class ReportesComponent implements OnInit {
     });
   }
 
-  listFuncionarios(){
-    this.funcionarioService.getDiasTrabajados('1').subscribe((res:any) => {
+  listFuncionarios(idMes: string){
+    this.funcionarioService.getDiasTrabajados(idMes).subscribe((res:any) => {
       this.funcionarios = res.data;
       this.objects = JSON.parse(JSON.stringify(this.funcionarios));
 
-      debugger;
+      // debugger;
       for (let i = 0; i < this.funcionarios.length; i++) {
         for (let j = 0; j < this.datesOfMonth.length; j++) {
           this.objects[i]["dias"][j] = this.verificarExitsFecha(this.datesOfMonth[j].date.format('YYYY-MM-DD'), this.datesOfMonth[j].date.locale('en').format('dd'), this.funcionarios[i]["dias"], this.funcionarios[i]["rol"]["horario"])
@@ -94,5 +100,33 @@ export class ReportesComponent implements OnInit {
       }
     }
     return {nombre: "", numero: 0, estado: "Falta", detalle: "", fecha: fecha, id: 1}
+  }
+
+  onChangeMesSelect(event: any){
+    console.log(event.target.value);
+    // debugger;
+    for (let i = 0; i < this.gestion.meses.length; i++) {
+      if (this.gestion.meses[i].id+"" === event.target.value) {
+          this.listFuncionarios(this.gestion.meses[i].id);
+          this.datesOfMonth = this.getDatesOfMonth(this.year, this.gestion.meses[i].numero-1);
+          this.mesNombre = this.gestion.meses[i].nombre;
+      }
+    }
+  }
+
+  detalle(id: any){
+    const modalRef = this.modalService.open(
+      DetalleComponent,
+      this.modalOptions
+    );
+    // modalRef.componentInstance.title = 'Editar';
+    modalRef.componentInstance.id = id;
+
+    modalRef.result.then(result => {
+      // if (result) {
+      //   this.list();
+      // }
+    });
+
   }
 }
