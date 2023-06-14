@@ -31,6 +31,7 @@
             <!-- {{ date.date | date:'dd-MM-yyyy' }}  {{ date.dayName }} -->
             <span>{{ date.date.toDate() | date:'dd-MM-yyyy' }}</span> - <span>{{ date.dayName }}</span>
           </td>
+          <th class='vertical_text border border-slate-300' rowspan="2">Hrs. Retraso</th>
         </tr>
         <tr>
           <th class='border border-slate-300' style="height: 15px;">#</th>
@@ -49,11 +50,14 @@
             'bg-yellow-300': dia.estado === 'Tarde',
             'bg-red-300': dia.estado === 'Falta'
           }">
-          <button (click)="detalle(dia.id)">
+          <button (click)="detalle(dia.id, funcionario.id_rols)">
             <ng-container *ngIf="dia.estado === 'Presente'">P</ng-container>
             <ng-container *ngIf="dia.estado === 'Tarde'">T</ng-container>
             <ng-container *ngIf="dia.estado === 'Falta'">F</ng-container>
           </button>
+          </td>
+          <td>
+            {{SumatoriaHorasRetraso(funcionario)}}
           </td>
         </tr>
       </tbody>

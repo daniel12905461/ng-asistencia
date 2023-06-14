@@ -114,13 +114,14 @@ export class ReportesComponent implements OnInit {
     }
   }
 
-  detalle(id: any){
+  detalle(id: any, idRol: any){
     const modalRef = this.modalService.open(
       DetalleComponent,
       this.modalOptions
     );
     // modalRef.componentInstance.title = 'Editar';
     modalRef.componentInstance.id = id;
+    modalRef.componentInstance.idRol = idRol;
 
     modalRef.result.then(result => {
       // if (result) {
@@ -129,4 +130,39 @@ export class ReportesComponent implements OnInit {
     });
 
   }
+
+  // SumatoriaHorasRetraso(funcionarioHoras: any){
+  //   // debugger;
+  //   const sumaHoras = moment();
+  //   for (let i = 0; i < funcionarioHoras.dias.length; i++) {
+  //     const duracion = moment.duration(funcionarioHoras.dias[i].hora_retrasos);
+  //     sumaHoras.add(duracion);
+  //   }
+
+  //   return sumaHoras.format("h:mm:ss");
+  // }
+
+  SumatoriaHorasRetraso(funcionarioHoras: any) {
+    let sumaDuracion = moment.duration(); // Inicializar la suma de duraciones a cero
+
+    for (let i = 0; i < funcionarioHoras.dias.length; i++) {
+      const duracion = moment.duration(funcionarioHoras.dias[i].hora_retrasos);
+      sumaDuracion.add(duracion);
+    }
+
+    return this.formatDuration(sumaDuracion); // Utilizar una función auxiliar para formatear la duración en horas:minutos:segundos
+  }
+
+  formatDuration(duration: any) {
+    const hours = Math.floor(duration.asHours());
+    const minutes = duration.minutes();
+    const seconds = duration.seconds();
+
+    return `${hours}:${this.padZero(minutes)}:${this.padZero(seconds)}`;
+  }
+
+  padZero(number: any) {
+    return number.toString().padStart(2, "0");
+  }
+
 }

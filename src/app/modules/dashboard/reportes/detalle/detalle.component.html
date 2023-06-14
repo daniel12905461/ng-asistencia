@@ -21,13 +21,46 @@
                 <div>Nombre es requerido</div>
               </div>
             </div> -->
-            <p>Estado: {{estado}}</p>
+            <div class='form-group m-1 w-96'>
+              <p>Estado: <b>{{estado}}</b></p>
+            </div>
             <div class='form-group m-1 w-96'>
               <label class='form-label'>Fecha: {{detalle}}</label>
               <div id="map" class="map"></div>
-              <input type="hidden" id="longitud">
-              <input type="hidden" id="latitud">
               <!-- <app-mapa [latitud]="la" [longitud]="lo" (changeLatLong)="setLonLat($event)"></app-mapa> -->
+            </div>
+            <div class='form-group m-1 w-96'>
+              <label class='form-label'>Horas Registradas:</label>
+              <table class='w-full text-center text-sm border-collapse border border-slate-400'>
+                <tr>
+                  <td></td>
+                  <th class='border border-slate-300'>Hr. Real:</th>
+                  <th class='border border-slate-300'>Hr. Registrada:</th>
+                </tr>
+                <tr>
+                  <th class='border border-slate-300'>Hora Ingreso:</th>
+                  <td class='border border-slate-300'>{{ rol!.horario!.hora_inicio }}</td>
+                  <td class='border border-slate-300'>{{ dia!.hora_inicio }}</td>
+                </tr>
+                <tr>
+                  <th class='border border-slate-300'>Hora Salida Receso:</th>
+                  <td class='border border-slate-300'>{{ rol!.horario!.hora_inicio_reseso }}</td>
+                  <td class='border border-slate-300'>{{ dia!.hora_inicio_reseso }}</td>
+                </tr>
+                <tr>
+                  <th class='border border-slate-300'>Hora Ingreso Receso:</th>
+                  <td class='border border-slate-300'>{{ rol!.horario!.hora_fin_reseso }}</td>
+                  <td class='border border-slate-300'>{{ dia!.hora_fin_reseso }}</td>
+                </tr>
+                <tr>
+                  <th class='border border-slate-300'>Hora Salida:</th>
+                  <td class='border border-slate-300'>{{ rol!.horario!.hora_fin }}</td>
+                  <td class='border border-slate-300'>{{ dia!.hora_fin }}</td>
+                </tr><tr>
+                  <th class='border border-slate-300' colspan="2">Total Horas de Retraso:</th>
+                  <td class='border border-slate-300'>{{ dia!.hora_retrasos }}</td>
+                </tr>
+              </table>
             </div>
 
           </div>
