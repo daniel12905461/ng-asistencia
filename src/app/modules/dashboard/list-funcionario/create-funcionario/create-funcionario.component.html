@@ -31,7 +31,7 @@
             </div>
             <div class='form-group m-1'>
               <label class='form-label'>CI</label>
-              <input type="text" class='form-control' id='ci' formControlName="ci" placeholder="ci"
+              <input type="number" class='form-control' id='ci' formControlName="ci" placeholder="ci"
                 [ngClass]="{'is-invalid': basicForm.get('ci')!.touched && basicForm.get('ci')!.invalid}" />
               <div class="invalid-feedback">
                 <div>CI es requerido</div>
@@ -39,7 +39,7 @@
             </div>
             <div class='form-group m-1'>
               <label class='form-label'>Celular</label>
-              <input type="text" class='form-control' id='celular' formControlName="celular" placeholder="celular"
+              <input type="number" class='form-control' id='celular' formControlName="celular" placeholder="celular"
                 [ngClass]="{'is-invalid': basicForm.get('celular')!.touched && basicForm.get('celular')!.invalid}" />
               <div class="invalid-feedback">
                 <div>Celular es requerido</div>

@@ -28,11 +28,11 @@
                 [ngClass]="{'is-invalid': basicForm.get('id_horarios')!.touched && basicForm.get('id_horarios')!.invalid}"
               >
                 <option *ngFor="let horario of horarios;" [value]="horario.id">
-                  {{horario.hora_inicio}} - {{horario.hora_inicio}}
+                  {{horario.hora_inicio}} - {{horario.hora_fin}}
                 </option>
               </select>
               <div class="invalid-feedback">
-                <div>HOrario es requerido</div>
+                <div>Horario es requerido</div>
               </div>
             </div>
 
