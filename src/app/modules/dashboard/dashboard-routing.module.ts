@@ -6,6 +6,7 @@ import { ListFuncionarioComponent } from './list-funcionario/list-funcionario.co
 import { ListHorariosComponent } from './list-horarios/list-horarios.component';
 import { ListRolesComponent } from './list-roles/list-roles.component';
 import { ListUbicacionesComponent } from './list-ubicaciones/list-ubicaciones.component';
+import { ListPermisosComponent } from './list-permisos/list-permisos.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
       {
         path:'ubicaciones',
         component: ListUbicacionesComponent,
+        // canActivate: [AuthGuardService]
+      },
+      {
+        path:'permisos',
+        component: ListPermisosComponent,
         // canActivate: [AuthGuardService]
       },
       {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import { finalize } from 'rxjs/operators';
 import { AlertSwallService } from 'src/app/core/alert-swall.service';
 import { HorarioService } from 'src/app/modules/services/horario.service';
@@ -29,17 +30,18 @@ export class CreateHorariosComponent implements OnInit {
     if (this.id !== "") {
       this.baseService.getById(this.id).subscribe( data => {
         this.basicForm.setValue({
-          hora_inicio: data.data.hora_inicio,
-          hora_inicio_reseso: data.data.hora_inicio_reseso,
-          hora_fin_reseso: data.data.hora_fin_reseso,
-          hora_fin: data.data.hora_fin,
+          hora_inicio: moment(data.data.hora_inicio, 'HH:mm:ss').format('HH:mm:ss'),
+          hora_inicio_reseso:  moment(data.data.hora_inicio_reseso, 'HH:mm:ss').format('HH:mm:ss'),
+          hora_fin_reseso:  moment(data.data.hora_fin_reseso, 'HH:mm:ss').format('HH:mm:ss'),
+          hora_fin:  moment(data.data.hora_fin, 'HH:mm:ss').format('HH:mm:ss'),
           domingo: data.data.domingo,
           lunes: data.data.lunes,
           martes: data.data.martes,
           miercoles: data.data.miercoles,
           jueves: data.data.jueves,
           viernes: data.data.viernes,
-          sabado: data.data.sabado
+          sabado: data.data.sabado,
+          id: ''
         });
       });
     }
@@ -57,7 +59,8 @@ export class CreateHorariosComponent implements OnInit {
       miercoles: [false],
       jueves: [false],
       viernes: [false],
-      sabado: [false]
+      sabado: [false],
+      id: ''
     });
   }
 

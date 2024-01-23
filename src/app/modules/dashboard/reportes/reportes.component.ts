@@ -4,6 +4,7 @@ import { FuncionarioService } from '../../services/funcionario.service';
 import * as moment from 'moment';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DetalleComponent } from './detalle/detalle.component';
+import { UbicacionService } from '../../services/ubicacion.service';
 
 @Component({
   selector: 'app-reportes',
@@ -11,6 +12,7 @@ import { DetalleComponent } from './detalle/detalle.component';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
+  ubicaciones: any;
   gestion: any;
   funcionarios: any;
   datesOfMonth: { date: moment.Moment, dayName: string }[] = [];
@@ -32,6 +34,7 @@ export class ReportesComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private baseService: GestionService,
+    private ubicacionService: UbicacionService,
     private funcionarioService: FuncionarioService,
   ) { }
 
@@ -41,6 +44,7 @@ export class ReportesComponent implements OnInit {
 
     this.list();
     this.listFuncionarios('1');
+    this.listUbicaciones();
   }
 
   list() {
@@ -64,6 +68,12 @@ export class ReportesComponent implements OnInit {
       console.log(this.objects);
       console.log(this.funcionarios);
     })
+  }
+
+  listUbicaciones() {
+    this.ubicacionService.getAll().subscribe((res: any) => {
+      this.ubicaciones = res.data;
+    });
   }
 
   getDatesOfMonth(year: number, month: number): { date: moment.Moment, dayName: string }[] {
@@ -112,6 +122,12 @@ export class ReportesComponent implements OnInit {
           this.mesNombre = this.gestion.meses[i].nombre;
       }
     }
+  }
+
+  onChangeUbicaionSelect(event: any){
+    // this.listFuncionarios(this.gestion.meses[i].id);
+    // this.datesOfMonth = this.getDatesOfMonth(this.year, this.gestion.meses[i].numero-1);
+    // this.mesNombre = this.gestion.meses[i].nombre;
   }
 
   detalle(id: any, idRol: any){

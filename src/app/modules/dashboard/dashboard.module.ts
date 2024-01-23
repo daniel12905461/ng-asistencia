@@ -15,6 +15,9 @@ import { CreateHorariosComponent } from './list-horarios/create-horarios/create-
 import { ListUbicacionesComponent } from './list-ubicaciones/list-ubicaciones.component';
 import { CreateUbicacionesComponent } from './list-ubicaciones/create-ubicaciones/create-ubicaciones.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
+import { ListPermisosComponent } from './list-permisos/list-permisos.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ListHorariosComponent,
     CreateHorariosComponent,
     ListUbicacionesComponent,
-    CreateUbicacionesComponent
+    CreateUbicacionesComponent,
+    ListPermisosComponent
   ],
   imports: [
     CommonModule,
@@ -37,9 +41,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     NgbModule,
     SharedModule,
+    MatIconModule,
+    MatSlideToggleModule
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  // schemas: [
+  //   CUSTOM_ELEMENTS_SCHEMA
+  // ]
 })
 export class DashboardModule { }

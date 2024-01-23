@@ -144,6 +144,7 @@ export class CreateUbicacionesComponent implements OnInit {
           nombre: data.data.nombre,
           latitud: data.data.latitud,
           longitud: data.data.longitud,
+          id: ''
         });
         this.la = data.data.latitud;
         this.lo = data.data.longitud;
@@ -159,6 +160,7 @@ export class CreateUbicacionesComponent implements OnInit {
       nombre: ['', [Validators.required]],
       latitud: [this.la],
       longitud: [this.lo],
+      id: [''],
     });
   }
 

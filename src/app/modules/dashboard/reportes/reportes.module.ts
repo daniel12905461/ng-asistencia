@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ReportesRoutingModule } from './reportes-routing.module';
 import { ReportesComponent } from './reportes.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 
 
 @NgModule({
   declarations: [
     ReportesComponent,
-    DetalleComponent
+    DetalleComponent,
+    FuncionariosComponent
   ],
   imports: [
     CommonModule,

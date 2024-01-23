@@ -12,6 +12,10 @@
   transform: rotate(180deg);
 }
 
+.active {
+  /* @apply bg-[#ffb703]; */
+  @apply bg-[#fb8500];
+}
 
 
 
