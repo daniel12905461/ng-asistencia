@@ -4,8 +4,12 @@ import { ReportesComponent } from './reportes.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 
 const routes: Routes = [
+  // {
+  //   path:'',
+  //   component: ReportesComponent,
+  // },
   {
-    path:'',
+    path:'por-mes',
     component: ReportesComponent,
   },
   {

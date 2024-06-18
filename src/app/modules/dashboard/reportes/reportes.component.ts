@@ -26,7 +26,7 @@ export class ReportesComponent implements OnInit {
     {"dia":"viernes", "d":"Fr"},
     {"dia":"sabado", "d":"Sa"},
   ];
-  year = 2023;
+  year = 2024;
   mesNombre = 'Enero';
   modalOptions: NgbModalOptions = {};
   showModal = false;

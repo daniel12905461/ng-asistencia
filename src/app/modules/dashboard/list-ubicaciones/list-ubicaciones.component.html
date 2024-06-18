@@ -1,44 +1,28 @@
-<div class='my-4 flex flex-row justify-between'>
-  <div>
-    <h2 class='text-lg font-bold text-dark-700 md:text-xl'>
-      Ubicaciones
-    </h2>
-    <!-- <p class='hidden pb-2 font-light text-dark-500 md:block'>
-      En esta sección podra gestionar todos los hoteles.
-    </p> -->
-  </div>
-  <div class='flex items-center'>
-      <button type="button" class='bg-green-600 hover:bg-green-700 rounded-sm text-white py-1 px-2' (click)="create()">Crear Nuevo</button>
-  </div>
+<div class="flex justify-between mt-6">
+  <h1 class="text-3xl font-bold mb-4 text-[#023047]">Ubicaciones</h1>
+  <button class="bg-emerald-500 text-white font-medium rounded px-3 py-1 mb-4" (click)="create()">Crear Nuevo</button>
 </div>
 
 <div class='relative overflow-x-auto'>
-    <table class='w-full text-center text-sm'>
-      <thead>
+  
+  <table class="table-auto w-full text-[#023047] text-center text-sm">
+    <thead>
         <tr>
-          <th class='py-1 px-3'>#</th>
-          <th class='py-1 px-3'>Lugar</th>
-          <th class='py-1 px-3'>Acciones</th>
+            <th class="px-4 py-2 text-center">N°</th>
+            <th class='py-1 px-3'>Lugar</th>
+            <th class='py-1 px-3'>Acciones</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let base of objects; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ base.nombre }}</td>
-          <!-- <td>
-            <app-switch [id]="libro.id" [estado]="libro.enabled" (clickEnable)="enable(libro.id)"></app-switch>
-          </td> -->
-          <td>
-            <div class="flex items-center justify-center">
-              <button type="button" class="bg-yellow-600 hover:bg-yellow-700 rounded-sm text-white py-1 px-2" (click)="edit(base.id)">
-                Editar
-              </button>
-              <button type="button" class="bg-red-600 hover:bg-red-700 rounded-sm text-white py-1 px-2 ml-1" (click)="eliminar(base.id)">
-                Eliminar
-              </button>
-            </div>
-          </td>
+    </thead>
+    <tbody>
+        <tr class="border-t" *ngFor="let base of objects; let i = index">
+            <td class="text-center">{{ i + 1 }}</td>
+            <td>{{ base.nombre }}</td>
+            <td>
+                <button class="bg-[#fb8500] text-white rounded px-2 py-1 mr-2 font-medium" (click)="edit(base.id)">Editar</button>
+                <button class="bg-rose-500 text-white rounded px-2 py-1 font-medium" (click)="eliminar(base.id)">Eliminar</button>
+            </td>
         </tr>
-      </tbody>
-    </table>
+    </tbody>
+  </table>
+
 </div>

@@ -5,13 +5,12 @@
         [ngClass]="menuShow ? 'w-64 flex' : 'hidden w-16'">
         <div class="pt-10 pb-8 text-center">
           <img src="assets/logo.png" alt="" height="10">
-          <!-- <span class="font-bold text-lg text-emerald-500"
-              [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents'">FacialCheck</span> -->
         </div>
         <div class="flex-grow px-2 overflow-y-auto scrollbarStyle">
             <!-- bg-emerald-50 -->
             <div class="rounded-lg py-4 flex flex-col"
                 [ngClass]="menuShow || menuShow ? 'px-6' : ' px-0 lg:px-6'">
+                <!-- hover:bg-[#fb8500] -->
                 <a [routerLink]="['/dashboard/funcionarios']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
                     [ngClass]="menuShow || menuShow ? 'text-left' : 'lg:text-left'"
@@ -25,7 +24,7 @@
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Funcionarios</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Funcionarios</span>
                 </a>
                 <a [routerLink]="['/dashboard/roles']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
@@ -39,7 +38,7 @@
                             <path d="M12 16s4-1.5 4-4V7s1-2 2-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                         </svg>
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Roles</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Roles</span>
                 </a>
                 <a [routerLink]="['/dashboard/horarios']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
@@ -55,7 +54,7 @@
                         </svg>
                                               
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Horarios</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Horarios</span>
                 </a>
                 <a [routerLink]="['/dashboard/ubicaciones']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
@@ -68,7 +67,7 @@
                             <circle cx="12" cy="10" r="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                         </svg>
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Ubicaciones</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Ubicaciones</span>
                 </a>
                 <a [routerLink]="['/dashboard/permisos']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
@@ -82,9 +81,9 @@
                             <circle cx="12" cy="15" r="1" fill="currentColor"/>
                         </svg>              
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Permisos</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Permisos</span>
                 </a>
-                <a [routerLink]="['/dashboard/reportes']"
+                <a [routerLink]="['/dashboard/reportes/por-mes']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
                     [ngClass]="menuShow || menuShow ? 'text-left' : 'lg:text-left'"
                     routerLinkActive="active"
@@ -97,7 +96,7 @@
                             <line x1="3" y1="9" x2="21" y2="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                         </svg>                        
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Reportes</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Reportes</span>
                 </a>
                 <a [routerLink]="['/dashboard/reportes/funcionarios']"
                     class="text-[#023047] font-bold py-1 text-lg hover:text-[#023047] hover:bg-[#fb8500] rounded-md flex flex-row mb-0.5"
@@ -110,7 +109,7 @@
                         </svg>
                                                
                     </div>
-                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents lg:contents lg:ml-4'">Reportes Funcionarios</span>
+                    <span [ngClass]="menuShow || menuShow ? '' : 'hidden lg:contents  lg:ml-4'">Reportes Funcionarios</span>
                 </a>
             </div>
         </div>
@@ -138,7 +137,7 @@
         </div>
         <div>
             <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                src="https://cdn.devdojo.com/images/june2021/headshot2.jpg" alt="{user.handle}" />
+                src="http://192.168.0.14:8000/public/1_daniel.jpg" alt="{user.handle}" />
         </div>
     </nav>
 

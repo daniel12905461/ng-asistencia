@@ -1,13 +1,13 @@
 <div class='my-4 flex flex-row justify-between'>
 	<div>
-		<h2 class='text-lg font-bold text-dark-700 md:text-xl'>
+		<h2 class='text-lg font-bold text-[#023047] md:text-xl'>
 			Reporte de Funcionarios por Ubicaciones
 		</h2>
-		<p class='hidden pb-2 font-light text-dark-500 md:block'>
+		<p class='hidden pb-2 font-light text-[#023047] md:block'>
 			En esta sección podra ver la lista de funcionarios por las ubicaciones.
 		</p>
 	</div>
-	<div class='flex items-center'>
+	<div class='flex items-center text-[#023047]'>
 		<div class='form-group m-1 mr-3'>
 			<label class='form-label mb-0'>Seleccione una Ubicación:</label>
 			<select class='form-control form-control-sm' (change)="onChangeUbicaionSelect($event)">
@@ -20,80 +20,26 @@
 </div>
 
 <div class='relative overflow-x-auto'>
-	<table class='w-full text-center text-sm border-collapse border border-slate-400'>
-		<thead>
-			<th class='py-1 px-3'>#</th>
-			<th class='py-1 px-3'>Foto</th>
-			<th class='py-1 px-3'>Nombre Completo</th>
-			<th class='py-1 px-3'>C.I.</th>
-			<th class='py-1 px-3'>Celular</th>
-			<th class='py-1 px-3'>Fecha Nac.</th>
-		</thead>
-		<tbody>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">{{ i + 1 }}</th>
-				<td></td>
-				<td>{{ base.nombres }} {{ base.apellidos }}</td>
-				<td>5345365</td>
-				<td>45634534</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">2</th>
-				<td></td>
-				<td>Adrián Martínez Ramírez</td>
-				<td>{{ base.ci }}</td>
-				<td>{{ base.celular }}</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">3</th>
-				<td></td>
-				<td>Laura García Castro</td>
-				<td>{{ base.ci }}</td>
-				<td>456345345</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">4</th>
-				<td></td>
-				<td>Alejandro Rodríguez Sánchez</td>
-				<td>2345654</td>
-				<td>{{ base.celular }}</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">5</th>
-				<td></td>
-				<td>Isabel López Hernández</td>
-				<td>{{ base.ci }}</td>
-				<td>3456234234</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">6</th>
-				<td></td>
-				<td>Francisco Torres Jiménez</td>
-				<td>{{ base.ci }}</td>
-				<td>456466</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">7</th>
-				<td></td>
-				<td>Carmen Ruiz Vargas</td>
-				<td>{{ base.ci }}</td>
-				<td>345365464</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">8</th>
-				<td></td>
-				<td>Javier Fernández Molina</td>
-				<td>{{ base.ci }}</td>
-				<td>53453455</td>
-				<td>{{ base.fecha_nac }}</td>
-			</tr>
-		</tbody>
-	</table>
+	
+  <table class="table-auto w-full text-[#023047] text-center text-sm">
+    <thead>
+        <tr>
+            <th class="px-4 py-2 text-center">N°</th>
+						<!-- <th class='py-1 px-3'>Foto</th> -->
+						<th class='py-1 px-3'>Nombre Completo</th>
+						<th class='py-1 px-3'>C.I.</th>
+						<th class='py-1 px-3'>Celular</th>
+						<th class='py-1 px-3'>Fecha Nac.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="border-t" *ngFor="let base of funcionarios; let i = index">
+            <td class="text-center">{{ i + 1 }}</td>
+						<td>{{ base.nombres }} {{ base.apellidos }}</td>
+						<td>{{ base.ci }}</td>
+						<td>{{ base.celular }}</td>
+						<td>{{ base.fecha_nac }}</td>
+        </tr>
+    </tbody>
+  </table>
 </div>

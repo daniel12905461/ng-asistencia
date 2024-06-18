@@ -1,13 +1,11 @@
-<div class='my-4 flex flex-row justify-between'>
+<div class="flex flex-row justify-between mt-6">
 	<div>
-		<h2 class='text-lg font-bold text-dark-700 md:text-xl'>
-			Lista de Solicitudes de permisos
-		</h2>
-		<p class='hidden pb-2 font-light text-dark-500 md:block'>
+		<h2 class="text-lg font-bold text-[#023047] md:text-xl">Lista de Solicitudes de permisos</h2>
+		<p class='hidden pb-2 font-light text-[#023047] text-sm md:block'>
 			En esta sección podrá aprobar los permisos de los funcionarios.
 		</p>
 	</div>
-	<div class='flex items-center'>
+	<div class='flex items-center text-[#023047]'>
 		<div class='form-group m-1 mr-3'>
 			<label class='form-label mb-0'>Seleccione una Ubicación:</label>
 			<select class='form-control form-control-sm' (change)="onChangeUbicaionSelect($event)">
@@ -16,64 +14,50 @@
 				</option>
 			</select>
 		</div>
-        <div class='form-group m-1'>
-          <label class='form-label mb-0'>Seleccione un Mes:</label>
-          
-          <!-- (change)="onChangeMesSelect($event)" -->
-          <select
-            class='form-control form-control-sm'
-          >
-            <option *ngFor="let mes of gestion?.meses" [value]="mes.id">
-              {{mes.nombre}}
-            </option>
-          </select>
-        </div>
+			<div class='form-group m-1'>
+				<label class='form-label mb-0'>Seleccione un Mes:</label>
+				<!-- (change)="onChangeMesSelect($event)" -->
+				<select
+					class='form-control form-control-sm'
+				>
+					<option *ngFor="let mes of gestion?.meses" [value]="mes.id">
+						{{mes.nombre}}
+					</option>
+				</select>
+			</div>
 	</div>
 </div>
-
+  
 <div class='relative overflow-x-auto'>
-	<table class='w-full text-center text-sm border-collapse border border-slate-400'>
-		<thead>
-			<th class='py-1 px-3'>#</th>
-			<th class='py-1 px-3'>Foto</th>
-			<th class='py-1 px-3'>Nombre Completo</th>
-			<th class='py-1 px-3'>C.I.</th>
-			<th class='py-1 px-3'>Fecha</th>
-			<th class='py-1 px-3'>Permiso</th>
-		</thead>
-		<tbody>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">{{ i + 1 }}</th>
-				<td></td>
-				<td>{{ base.nombres }} {{ base.apellidos }}</td>
-				<td>{{ base.ci }}</td>
-				<td>{{ base.fecha_nac }}</td>
-				<td><mat-slide-toggle></mat-slide-toggle></td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">{{ i + 1 }}</th>
-				<td></td>
-				<td>{{ base.nombres }} {{ base.apellidos }}</td>
-				<td>{{ base.ci }}</td>
-				<td>{{ base.fecha_nac }}</td>
-				<td><mat-slide-toggle></mat-slide-toggle></td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">{{ i + 1 }}</th>
-				<td></td>
-				<td>{{ base.nombres }} {{ base.apellidos }}</td>
-				<td>{{ base.ci }}</td>
-				<td>{{ base.fecha_nac }}</td>
-				<td><mat-slide-toggle></mat-slide-toggle></td>
-			</tr>
-			<tr *ngFor="let base of funcionarios; let i = index">
-				<th scope="row">{{ i + 1 }}</th>
-				<td></td>
-				<td>{{ base.nombres }} {{ base.apellidos }}</td>
-				<td>{{ base.ci }}</td>
-				<td>{{ base.fecha_nac }}</td>
-				<td><mat-slide-toggle></mat-slide-toggle></td>
-			</tr>
-		</tbody>
+	
+	<table class="table-auto w-full text-[#023047] text-center text-sm">
+	  <thead>
+		  <tr>
+			  <th class="px-4 py-2 text-center">N°</th>
+				<th class='py-1 px-3'>Funcionario</th>
+				<th class='py-1 px-3'>Motivo</th>
+				<th class='py-1 px-3'>Fecha del permiso</th>
+				<th class='py-1 px-3'>Permiso</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+		  <tr class="border-t" *ngFor="let base of permisos; let i = index">
+			  <th class="text-center">{{ i + 1 }}</th>
+				<td>{{ base?.funcionario.nombres }} {{ base?.funcionario.apellidos }} 
+					<br>
+					<b>CI:</b> {{base?.funcionario.ci}}
+				</td>
+				<td>{{ base.motivo }}</td>
+				<td>
+					{{ base?.dia.fecha }} 
+					<br>
+					<b class="text-xs">{{ base?.dia.nombre }}</b> 
+				</td>
+				<td>
+					<input type="checkbox" class="form-control form-control-sm" (change)="aceptarPermiso(base?.id)" [checked]="base?.aprobado">
+				</td>
+		  </tr>
+	  </tbody>
 	</table>
 </div>
+  
