@@ -5,6 +5,7 @@ import { ReportesRoutingModule } from './reportes-routing.module';
 import { ReportesComponent } from './reportes.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
   ],
   imports: [
     CommonModule,
-    ReportesRoutingModule
+    ReportesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule  
   ]
 })
 export class ReportesModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuncionarioService } from 'src/app/modules/services/funcionario.service';
 import { GestionService } from 'src/app/modules/services/gestion.service';
 import { UbicacionService } from 'src/app/modules/services/ubicacion.service';
@@ -9,21 +10,32 @@ import { UbicacionService } from 'src/app/modules/services/ubicacion.service';
   styleUrls: ['./funcionarios.component.css']
 })
 export class FuncionariosComponent implements OnInit {
+  basicForm!: FormGroup;
   ubicaciones: any;
   funcionarios: any;
   gestion: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private baseService: GestionService,
     private ubicacionService: UbicacionService,
     private funcionarioService: FuncionarioService,
   ) { }
 
   ngOnInit(): void {
-
+    this.createForm();
     this.list();
     this.listFuncionarios();
     this.listUbicaciones();
+    this.basicForm.valueChanges.subscribe((res: any) => {
+      this.listFuncionarios();
+    })
+  }
+
+  createForm() {
+    this.basicForm = this.formBuilder.group({
+      ubicacion_id: ['1', [Validators.required]],
+    });
   }
 
   list() {
@@ -33,7 +45,7 @@ export class FuncionariosComponent implements OnInit {
   }
 
   listFuncionarios(){
-    this.funcionarioService.getAll().subscribe((res:any) => {
+    this.funcionarioService.getAll(this.basicForm.value).subscribe((res:any) => {
       this.funcionarios = res.data;
       console.log(this.funcionarios);
     })

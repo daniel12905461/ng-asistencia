@@ -7,16 +7,25 @@
 			En esta sección podra ver la lista de funcionarios por las ubicaciones.
 		</p>
 	</div>
-	<div class='flex items-center text-[#023047]'>
+	
+  <form
+    action=""
+    [formGroup]="basicForm"
+    novalidate
+    class='flex items-center text-[#023047]'
+  >
 		<div class='form-group m-1 mr-3'>
 			<label class='form-label mb-0'>Seleccione una Ubicación:</label>
-			<select class='form-control form-control-sm' (change)="onChangeUbicaionSelect($event)">
+			<select 
+				class='form-control form-control-sm' 
+        formControlName="ubicacion_id"
+			>
 				<option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
 					{{ubicacion.nombre}}
 				</option>
 			</select>
 		</div>
-	</div>
+	</form>
 </div>
 
 <div class='relative overflow-x-auto'>

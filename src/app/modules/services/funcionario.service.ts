@@ -13,8 +13,8 @@ export class FuncionarioService extends BaseApiClass {
     this.baseUrl = 'funcionarios';
   }
 
-  getDiasTrabajados(id: string){
-    return this.httpClient.get(`${this.baseUrl}/dias-trabajados/${id}`).pipe(
+  getDiasTrabajados(id: string, idUbicacion: any){
+    return this.httpClient.get(`${this.baseUrl}/dias-trabajados/${id}?id_ubicacion=${idUbicacion}`).pipe(
       map((body: any) => {
         return body;
       })

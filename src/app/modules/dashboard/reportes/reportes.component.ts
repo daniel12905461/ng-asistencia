@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DetalleComponent } from './detalle/detalle.component';
 import { UbicacionService } from '../../services/ubicacion.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reportes',
@@ -12,6 +13,7 @@ import { UbicacionService } from '../../services/ubicacion.service';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
+  basicForm!: FormGroup;
   ubicaciones: any;
   gestion: any;
   funcionarios: any;
@@ -32,6 +34,7 @@ export class ReportesComponent implements OnInit {
   showModal = false;
 
   constructor(
+    private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private baseService: GestionService,
     private ubicacionService: UbicacionService,
@@ -39,12 +42,36 @@ export class ReportesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const month = 1;
+    this.createForm();
+    const month = Number(moment().format('M'));
     this.datesOfMonth = this.getDatesOfMonth(this.year, month-1);
 
     this.list();
-    this.listFuncionarios('1');
+    this.listFuncionarios(
+      this.basicForm.controls['mes_id'].value, 
+      this.basicForm.controls['ubicacion_id'].value
+    );
     this.listUbicaciones();
+
+    this.basicForm.valueChanges.subscribe((res: any) => {
+      for (let i = 0; i < this.gestion.meses.length; i++) {
+        if (this.gestion.meses[i].id+"" === this.basicForm.controls['mes_id'].value) {
+          this.listFuncionarios(
+            this.basicForm.controls['mes_id'].value, 
+            this.basicForm.controls['ubicacion_id'].value
+          );
+          this.datesOfMonth = this.getDatesOfMonth(this.year, this.gestion.meses[i].numero-1);
+          this.mesNombre = this.gestion.meses[i].nombre;
+        }
+      }
+    })
+  }
+  
+  createForm() {
+    this.basicForm = this.formBuilder.group({
+      ubicacion_id: ['1', [Validators.required]],
+      mes_id: [moment().format('M'), [Validators.required]],
+    });
   }
 
   list() {
@@ -53,8 +80,8 @@ export class ReportesComponent implements OnInit {
     });
   }
 
-  listFuncionarios(idMes: string){
-    this.funcionarioService.getDiasTrabajados(idMes).subscribe((res:any) => {
+  listFuncionarios(idMes: string, idUbicacion: any){
+    this.funcionarioService.getDiasTrabajados(idMes, idUbicacion).subscribe((res:any) => {
       this.funcionarios = res.data;
       this.objects = JSON.parse(JSON.stringify(this.funcionarios));
 
@@ -110,24 +137,6 @@ export class ReportesComponent implements OnInit {
       }
     }
     return {nombre: "", numero: 0, estado: "Falta", detalle: "", fecha: fecha, id: 1}
-  }
-
-  onChangeMesSelect(event: any){
-    console.log(event.target.value);
-    // debugger;
-    for (let i = 0; i < this.gestion.meses.length; i++) {
-      if (this.gestion.meses[i].id+"" === event.target.value) {
-          this.listFuncionarios(this.gestion.meses[i].id);
-          this.datesOfMonth = this.getDatesOfMonth(this.year, this.gestion.meses[i].numero-1);
-          this.mesNombre = this.gestion.meses[i].nombre;
-      }
-    }
-  }
-
-  onChangeUbicaionSelect(event: any){
-    // this.listFuncionarios(this.gestion.meses[i].id);
-    // this.datesOfMonth = this.getDatesOfMonth(this.year, this.gestion.meses[i].numero-1);
-    // this.mesNombre = this.gestion.meses[i].nombre;
   }
 
   detalle(id: any, idRol: any){
