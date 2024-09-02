@@ -45,6 +45,7 @@ export class ReportesComponent implements OnInit {
     this.createForm();
     const month = Number(moment().format('M'));
     this.datesOfMonth = this.getDatesOfMonth(this.year, month-1);
+    this.mesNombre = moment().format('M');
 
     this.list();
     this.listFuncionarios(

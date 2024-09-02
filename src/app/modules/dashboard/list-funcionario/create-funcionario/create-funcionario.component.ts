@@ -50,6 +50,17 @@ export class CreateFuncionarioComponent implements OnInit {
         });
       });
     }
+
+    // this.basicForm.get('celular')!.valueChanges.subscribe((val: any) => {
+    //   debugger;
+    //   if (val && val.length > 8) {
+    //     console.log('El número de celular no puede tener más de 8 dígitos.');
+    //     // Aquí puedes manejar la lógica para mostrar un mensaje de error o deshacer el cambio, por ejemplo:
+    //     this.basicForm.get('celular')!.setValue(val.slice(0, 8)); // Limitar el valor a 8 dígitos
+    //   } else {
+    //     console.log(val);
+    //   }
+    // });
   }
 
   listHorarios(){
@@ -71,7 +82,7 @@ export class CreateFuncionarioComponent implements OnInit {
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       ci: ['', [Validators.required]],
-      celular: [''],
+      celular: ['', [Validators.required, Validators.maxLength(8)]],
       foto: [' '],
       fecha_nac: ['', [Validators.required]],
       user: ['', [Validators.required]],

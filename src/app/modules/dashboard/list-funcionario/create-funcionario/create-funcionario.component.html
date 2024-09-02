@@ -45,10 +45,11 @@
         </div>
         <div class='form-group m-1'>
           <label class='form-label'>Celular</label>
-          <input type="number" class='form-control' id='celular' formControlName="celular" placeholder="celular"
-            [ngClass]="{'is-invalid': basicForm.get('celular')!.touched && basicForm.get('celular')!.invalid}" />
+          <input type="text" class='form-control' id='celular' formControlName="celular" placeholder="celular"
+            [ngClass]="{'is-invalid': basicForm.get('celular')!.touched && basicForm.get('celular')!.invalid}"/>
           <div class="invalid-feedback">
-            <div>Celular es requerido</div>
+            <div *ngIf="basicForm.get('celular')!.hasError('required')">Celular es requerido</div>
+            <div *ngIf="basicForm.get('celular')!.hasError('maxlength')">Celular no puede ser mayor que 8 dígitos</div>
           </div>
         </div>
         <div class='form-group m-1'>

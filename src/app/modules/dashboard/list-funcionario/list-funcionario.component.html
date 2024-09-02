@@ -21,8 +21,11 @@
     <tbody>
         <tr class="border-t" *ngFor="let base of objects; let i = index">
             <td class="text-center">{{ i + 1 }}</td>
-            <td class="text-center px-4">
-              <img class="h-8 w-7 rounded-xl" src="http://192.168.0.14:8000/public/{{base.id}}_{{base.nombres}}.jpg" alt="">
+            <td 
+              class="text-center px-4" 
+              style="display: flex; align-items: center; justify-content: center;"
+            >
+              <img class="h-8 w-7 rounded-2xl" src="{{serverUrl}}{{base.id}}_{{base.nombres}}.jpg" alt="">
             </td>
             <td>{{ base.nombres }} {{ base.apellidos }}</td>
             <td>{{ base.ci }}</td>

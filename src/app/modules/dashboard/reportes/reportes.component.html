@@ -62,12 +62,14 @@
         <td *ngFor="let dia of funcionario.dias" class="border border-slate-300" [ngClass]="{
           'bg-green-300': dia.estado === 'Presente',
           'bg-yellow-300': dia.estado === 'Tarde',
-          'bg-red-300': dia.estado === 'Falta'
+          'bg-red-300': dia.estado === 'Falta',
+          'bg-blue-500': dia.estado === 'Permiso'
         }">
         <button (click)="detalle(dia.id, funcionario.id_rols)">
           <ng-container *ngIf="dia.estado === 'Presente'">P</ng-container>
           <ng-container *ngIf="dia.estado === 'Tarde'">T</ng-container>
           <ng-container *ngIf="dia.estado === 'Falta'">F</ng-container>
+          <ng-container *ngIf="dia.estado === 'Permiso'">Pr</ng-container>
         </button>
         </td>
         <td>
