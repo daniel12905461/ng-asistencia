@@ -23,13 +23,14 @@
             </div> -->
             <div class='form-group m-1 w-96'>
               <p>Estado: <b>{{estado}}</b></p>
+              <p *ngIf="estado === 'Permiso'">Motivo: <b>{{dia!.permisos!.motivo}}</b></p>
             </div>
             <div class='form-group m-1 w-96'>
               <label class='form-label'>Fecha: {{detalle}}</label>
               <div id="map" class="map"></div>
               <!-- <app-mapa [latitud]="la" [longitud]="lo" (changeLatLong)="setLonLat($event)"></app-mapa> -->
             </div>
-            <div class='form-group m-1 w-96'>
+            <div class='form-group m-1 w-96' *ngIf="estado !== 'Permiso'">
               <label class='form-label'>Horas Registradas:</label>
               <table class='w-full text-center text-sm border-collapse border border-slate-400'>
                 <tr>

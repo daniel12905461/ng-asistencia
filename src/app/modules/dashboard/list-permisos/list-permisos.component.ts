@@ -4,6 +4,8 @@ import { UbicacionService } from '../../services/ubicacion.service';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { PermisoService } from '../../services/permiso.service';
 import { AlertSwallService } from 'src/app/core/alert-swall.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-list-permisos',
@@ -11,12 +13,14 @@ import { AlertSwallService } from 'src/app/core/alert-swall.service';
   styleUrls: ['./list-permisos.component.css'],
 })
 export class ListPermisosComponent implements OnInit {
+  basicForm!: FormGroup;
   ubicaciones: any;
   funcionarios: any;
   gestion: any;
   permisos: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private baseService: PermisoService,
     private gestionService: GestionService,
     private ubicacionService: UbicacionService,
@@ -25,14 +29,26 @@ export class ListPermisosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.createForm();
     this.list();
     this.listGestion();
     this.listFuncionarios();
     this.listUbicaciones();
+
+    this.basicForm.valueChanges.subscribe((res: any) => {
+      this.list();
+    })
+  }
+
+  createForm() {
+    this.basicForm = this.formBuilder.group({
+      ubicacion_id: ['1', [Validators.required]],
+      mes_id: [moment().format('M'), [Validators.required]],
+    });
   }
 
   list() {
-    this.baseService.getAll().subscribe((res: any) => {
+    this.baseService.getAll(this.basicForm.value).subscribe((res: any) => {
       this.permisos = res.data;
     });
   }

@@ -3,6 +3,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { FuncionarioService } from '../../services/funcionario.service';
 import { AlertSwallService } from 'src/app/core/alert-swall.service';
 import { CreateFuncionarioComponent } from './create-funcionario/create-funcionario.component';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-list-funcionario',
@@ -13,6 +14,7 @@ export class ListFuncionarioComponent implements OnInit {
   objects: any[] = [];
   modalOptions: NgbModalOptions = {};
   showModal = false;
+  serverUrl = environment.serverUrl;
 
   constructor(
     private modalService: NgbModal,
