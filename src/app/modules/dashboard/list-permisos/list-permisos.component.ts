@@ -65,7 +65,7 @@ export class ListPermisosComponent implements OnInit {
   aceptarPermiso(id: any){
     this.alertSwal
       .showConfirm({
-        title: 'Esta seguro de eliminar?',
+        title: 'Aceptar solicitud de permiso?',
         text: 'la accion no podra revertirse...!',
         icon: 'warning'
       })
